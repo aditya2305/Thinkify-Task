@@ -16,6 +16,27 @@ public class CommandLineController implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
+
+        System.out.println("Pre-populating sample data...");
+
+        socialMediaService.registerUser("1", "Akash");
+        socialMediaService.registerUser("2", "Hemant");
+        socialMediaService.registerUser("3", "Priya");
+
+        socialMediaService.uploadPost("1", "This is Akash's first post.");
+        socialMediaService.uploadPost("1", "I work at Cleartrip as a developer.");
+        socialMediaService.uploadPost("2", "Hemant's post about his experience at Cleartrip.");
+        socialMediaService.uploadPost("3", "Hello everyone, excited to join this platform!");
+
+        socialMediaService.interactWithUser("FOLLOW", "2", "1");
+        socialMediaService.interactWithUser("FOLLOW", "3", "1");
+        socialMediaService.interactWithPost("LIKE", "2", "001");
+        socialMediaService.interactWithPost("DISLIKE", "3", "002");
+        
+        System.out.println("Sample data loaded.");
+        System.out.println("-------------------------------------");
+
+        // Interactive command-line console
         Scanner scanner = new Scanner(System.in);
         System.out.println("Social Media Console Application Started...");
         System.out.println("Enter commands (or type 'exit' to quit):");
